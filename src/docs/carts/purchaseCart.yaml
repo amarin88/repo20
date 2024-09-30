@@ -1,0 +1,20 @@
+paths:
+  /api/carts/{cid}/purchase:
+    get:
+      tags:
+        - Cart
+      summary: Purchase cart
+      parameters:
+        - name: cid
+          in: path
+          description: Cart ID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Cart Successfully Purchased.
+        "404":
+            description: Cart Not Found.
+        "500":
+          description: Internal Server Error.

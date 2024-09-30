@@ -1,0 +1,54 @@
+paths:
+  /api/carts/{cid}/product/{pid}:
+    put:
+      tags:
+        - Cart
+      summary: Update product´s quantity by id
+      parameters:
+        - name: cid
+          in: path
+          description: Cart ID
+          required: true
+          schema:
+            type: string
+        - name: pid
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/updateProductByQuantity"
+      responses:
+        "200":
+          description: Product´s Quantity Successfully Updated.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/ProductsByQuantity"
+        "404":
+          description: Product Not Found.
+        "500":
+          description: Internal Server Error.
+
+components:
+  schemas:
+    ProductsByQuantity:
+      type: object
+      properties:
+        quantity:
+          type: integer
+      example:
+        quantity: 2
+  requestBodies:
+    updateProductByQuantity:
+      type: object
+      properties:
+        quantity:
+          type: integer
+      example:
+        quantity: 1

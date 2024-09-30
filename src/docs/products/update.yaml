@@ -1,0 +1,90 @@
+paths:
+  /api/products/{pid}:
+    put:
+      tags:
+        - Products
+      summary: Update product by id
+      parameters:
+        - name: pid
+          in: path
+          description: Product ID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/updateProduct"
+      responses:
+        "200":
+          description: Product Successfully Updated.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/ProductsById"
+        "404":
+          description: Product Not Found.
+        "500":
+          description: Internal Server Error.
+
+components:
+  schemas:
+    ProductsById:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+        title:
+          type: string
+        description:
+          type: string
+        thumbnail:
+          type: array
+        code:
+          type: string
+        stock:
+          type: integer
+        status:
+          type: boolean
+        price:
+          type: number
+        category:
+          type: string
+      example:
+        _id: "66aef34af09217e388bd2824"
+        title: "Fantastic Fresh Chair"
+        description: "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design"
+        category: "Games"
+        price: 20
+        thumbnail: ["navigate_without_deathwatch.jpg"]
+        stock: 85
+        code: "0x2A9D9E"
+        status: false
+  requestBodies:
+    updateProduct:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        thumbnail:
+          type: array
+        code:
+          type: string
+        stock:
+          type: integer
+        price:
+          type: number
+        category:
+          type: string
+      example:
+        title: "Fantastic Fresh Chair"
+        description: "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design"
+        category: "Games"
+        price: 20
+        thumbnail: ["navigate_without_deathwatch.jpg"]
+        stock: 85
+        code: "0x2A9D9E"

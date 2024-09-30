@@ -1,0 +1,88 @@
+paths:
+  /api/products:
+    post:
+      tags:
+        - Products
+      summary: Create products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/createProduct"
+      responses:
+        "201":
+          description: Product successfully created.
+        "500":
+          description: Internal Server Error.
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+        title:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        price:
+          type: number
+        thumbnail:
+          type: array
+        stock:
+          type: integer
+        code:
+          type: string
+        status:
+          type: boolean
+        owner:
+          type: string
+      example:
+        _id: "66aef34af09217e388bd2824"
+        title: "Fantastic Fresh Chair"
+        description: "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design"
+        category: "Games"
+        price: 20
+        thumbnail: ["navigate_without_deathwatch.jpg"]
+        stock: 85
+        code: "0x2A9D9E"
+        status: false
+        owner: "admin"
+  requestBodies:
+    createProduct:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+        title:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        price:
+          type: number
+        thumbnail:
+          type: array
+        stock:
+          type: integer
+        code:
+          type: string
+        status:
+          type: boolean
+        owner:
+          type: string
+    example:
+      _id: "66aef34af09217e388bd2824"
+      title: "Fantastic Fresh Chair"
+      description: "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design"
+      category: "Games"
+      price: 20
+      thumbnail: ["navigate_without_deathwatch.jpg"]    
+      stock: 85
+      code: "0x2A9D9E"
+      status: false
+      owner: "admin"
